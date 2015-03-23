@@ -14,6 +14,7 @@
 		6E5E270C1AC0B8A0000423A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E5E270B1AC0B8A0000423A8 /* Images.xcassets */; };
 		6E5E270F1AC0B8A0000423A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5E270D1AC0B8A0000423A8 /* LaunchScreen.xib */; };
 		6E5E271B1AC0B8A1000423A8 /* MeetMeUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E271A1AC0B8A1000423A8 /* MeetMeUpTests.m */; };
+		6E5E27261AC0BA4C000423A8 /* MeetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		6E5E27141AC0B8A0000423A8 /* MeetMeUpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetMeUpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5E27191AC0B8A1000423A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6E5E271A1AC0B8A1000423A8 /* MeetMeUpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeetMeUpTests.m; sourceTree = "<group>"; };
+		6E5E27241AC0BA4C000423A8 /* MeetUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetUpTableViewCell.h; sourceTree = "<group>"; };
+		6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetUpTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				6E5E27051AC0B8A0000423A8 /* ViewController.h */,
 				6E5E27061AC0B8A0000423A8 /* ViewController.m */,
 				6E5E27081AC0B8A0000423A8 /* Main.storyboard */,
+				6E5E27241AC0BA4C000423A8 /* MeetUpTableViewCell.h */,
+				6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */,
 				6E5E270B1AC0B8A0000423A8 /* Images.xcassets */,
 				6E5E270D1AC0B8A0000423A8 /* LaunchScreen.xib */,
 				6E5E26FE1AC0B8A0000423A8 /* Supporting Files */,
@@ -222,6 +227,7 @@
 				6E5E27071AC0B8A0000423A8 /* ViewController.m in Sources */,
 				6E5E27041AC0B8A0000423A8 /* AppDelegate.m in Sources */,
 				6E5E27011AC0B8A0000423A8 /* main.m in Sources */,
+				6E5E27261AC0BA4C000423A8 /* MeetUpTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
