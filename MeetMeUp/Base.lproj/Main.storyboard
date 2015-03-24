@@ -193,33 +193,54 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="GFw-Qx-bQq"/>
                                 </connections>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search meetups" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q9O-9X-9Hr">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Q9O-9X-9Hr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-6" id="R1m-ni-PLY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q9O-9X-9Hr" secondAttribute="trailing" constant="-8" id="RyY-XM-oRE"/>
+                            <constraint firstItem="Q9O-9X-9Hr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="17" id="SOq-am-BrJ"/>
                             <constraint firstItem="EQl-vr-e6n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="YVG-Di-w05"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EQl-vr-e6n" secondAttribute="bottom" id="fkF-Ei-Uxu"/>
-                            <constraint firstItem="EQl-vr-e6n" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="u0A-4w-n3A"/>
+                            <constraint firstItem="EQl-vr-e6n" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="u0A-4w-n3A">
+                                <variation key="widthClass=compact" constant="119"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="EQl-vr-e6n" secondAttribute="trailing" constant="-16" id="vfL-HW-J2d"/>
+                            <constraint firstItem="EQl-vr-e6n" firstAttribute="top" secondItem="Q9O-9X-9Hr" secondAttribute="bottom" constant="8" id="y6M-KZ-9iS"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="EQl-vr-e6n"/>
+                                <exclude reference="Q9O-9X-9Hr"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="R1m-ni-PLY"/>
+                                <exclude reference="RyY-XM-oRE"/>
+                                <exclude reference="SOq-am-BrJ"/>
                                 <exclude reference="YVG-Di-w05"/>
                                 <exclude reference="u0A-4w-n3A"/>
                                 <exclude reference="vfL-HW-J2d"/>
+                                <exclude reference="y6M-KZ-9iS"/>
                                 <exclude reference="fkF-Ei-Uxu"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="EQl-vr-e6n"/>
+                                <include reference="Q9O-9X-9Hr"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="R1m-ni-PLY"/>
+                                <include reference="RyY-XM-oRE"/>
+                                <include reference="SOq-am-BrJ"/>
                                 <include reference="YVG-Di-w05"/>
                                 <include reference="u0A-4w-n3A"/>
                                 <include reference="vfL-HW-J2d"/>
+                                <include reference="y6M-KZ-9iS"/>
                                 <include reference="fkF-Ei-Uxu"/>
                             </mask>
                         </variation>
@@ -227,6 +248,7 @@
                     <navigationItem key="navigationItem" id="qXS-mk-a6e"/>
                     <connections>
                         <outlet property="tableview" destination="EQl-vr-e6n" id="uhU-Ow-bLu"/>
+                        <outlet property="textField" destination="Q9O-9X-9Hr" id="Gml-3e-Myh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

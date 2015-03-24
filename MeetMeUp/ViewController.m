@@ -15,6 +15,7 @@
 @property NSMutableArray *meetupArray;
 @property NSMutableDictionary *meetupDictionary;
 
+@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 
 @end
@@ -24,6 +25,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+
+    UILabel *magnifyingGlass = [[UILabel alloc] init];
+    [magnifyingGlass setText:[[NSString alloc] initWithUTF8String:"\xF0\x9F\x94\x8D"]];
+    [magnifyingGlass sizeToFit];
+
+    [self.textField setLeftView:magnifyingGlass];
+    [self.textField setLeftViewMode:UITextFieldViewModeAlways];
+
+
+
+
 
 
     NSURL *url = [NSURL URLWithString:@"https://api.meetup.com/2/open_events.json?zip=94080&text=mobile&text_format=plain&time=,1w&key=1ce664f564d97152966486a2c2756"];
@@ -69,6 +81,17 @@
     cell.labelEventName.text = meetup.eventName;
     cell.labelAddress1.text = meetup.address1;
     cell.labelCity.text = meetup.city;
+
+    // set alternate background color based on row number (odd or even)
+    if(indexPath.row % 2 == 0){
+        cell.contentView.backgroundColor = [UIColor colorWithRed:255/255.0f green:247/255.0f blue:225/255.0f alpha:1.0f];
+    }
+    else {
+        cell.contentView.backgroundColor = [UIColor clearColor];
+    }
+
+
+
 
     return cell;
     
