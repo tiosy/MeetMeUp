@@ -11,6 +11,9 @@
 @interface webViewController () <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webview;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 
 @end
 
@@ -36,6 +39,30 @@
 
 - (IBAction)onPreviousButtonPressed:(id)sender {
     [self.webview goForward];
+}
+
+
+#pragma mark UIWebViewDelegate Protocols
+
+
+
+-(void)webViewDidStartLoad:(UIWebView *)webView
+{
+    [self.activityIndicator startAnimating];
+}
+
+
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.activityIndicator stopAnimating];
+
+    self.activityIndicator.hidesWhenStopped=YES;
+
+    self.backButton.enabled = webView.canGoBack;
+    self.forwardButton.enabled = webView.canGoForward;
+
+    
 }
 
 

@@ -14,7 +14,7 @@
 @property NSString *eventName;
 @property NSString *address1;
 @property NSString *city;
-@property NSString *dateTimeString;
+@property NSNumber *dateTime;
 @property NSString *eventURL;
 @property NSNumber *yesRSVPCount;
 @property NSString *groupName;

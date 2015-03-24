@@ -10,7 +10,7 @@
 #import "DetailViewController.h"
 #import "MeetUpTableViewCell.h"
 
-@interface RootViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface RootViewController () <UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @property NSMutableArray *meetupArray;
@@ -36,30 +36,37 @@
     [self.textField setLeftView:magnifyingGlass];
     [self.textField setLeftViewMode:UITextFieldViewModeAlways];
 
-
-
-
-
-
-    NSURL *url = [NSURL URLWithString:@"https://api.meetup.com/2/open_events.json?zip=95110&text=mobile&text_format=plain&time=,1w&key=1ce664f564d97152966486a2c2756"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
-     ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-
-         self.meetupDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-
-         self.meetupArray = [self.meetupDictionary objectForKey:@"results"];
-
-         [self.tableview reloadData];
-     }];
-
-
-
+    NSString *string = @"mobile";
+    [self performMeetupAPI:string];
 
 
 }
 
 
+#pragma mark - helper method
+
+-(void) performMeetupAPI: (NSString *) text
+{
+    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/open_events.json?zip=95110&&text_format=plain&time=,1w&key=1ce664f564d97152966486a2c2756&text=%@",text];
+
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+
+ //??????
+//         [self.meetupDictionary removeAllObjects];
+//         [self.meetupArray removeAllObjects];
+//
+         self.meetupDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+
+         self.meetupArray = [self.meetupDictionary objectForKey:@"results"];
+
+         [self.tableview reloadData];
+     }
+    ];
+
+}
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -85,6 +92,8 @@
     cell.labelAddress1.text = self.meetup.address1;
     cell.labelCity.text = self.meetup.city;
 
+    cell.labelDateTime.text = [self.meetup.dateTime stringValue];
+
     // set alternate background color based on row number (odd or even)
     if(indexPath.row % 2 == 0){
         cell.contentView.backgroundColor = [UIColor colorWithRed:255/255.0f green:247/255.0f blue:225/255.0f alpha:1.0f];
@@ -104,7 +113,7 @@
     m.eventName = [dic objectForKey:@"name"];
     m.address1  = [[dic objectForKey:@"venue"] objectForKey:@"address_1"];
     m.city = [[dic objectForKey:@"venue"] objectForKey:@"city"];
-    m.dateTimeString = [dic objectForKey:@"time"];
+    m.dateTime = [dic objectForKey:@"time"];
 
 
 
@@ -112,15 +121,6 @@
     m.yesRSVPCount = [dic objectForKey:@"yes_rsvp_count"];
     m.groupName = [[dic objectForKey:@"group"] objectForKey:@"name"];
     m.eventDescription = [dic objectForKey:@"description"];
-    
-//        m.eventURL = @"http://amazon.com";
-//        m.yesRSVPCount = @"123";
-//        m.groupName = @"group name";
-//        m.eventDescription = @"event desp";
-
-
-
-
 
     return m;
 
@@ -140,12 +140,22 @@
     self.meetup = [self meetupGetData:dictionary];
 
     detailVC.meetup = self.meetup;
-
-
-
-
     
 }
 
+
+
+#pragma mark UITextFieldDelegate Protocols
+
+//add http:// string if user does not provide
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+
+
+    NSString *string = self.textField.text;
+    [self performMeetupAPI:string];
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

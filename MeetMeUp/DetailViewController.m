@@ -30,6 +30,7 @@
     NSLog(@"===%@",self.meetup.yesRSVPCount);
     self.labelRSVP.text = [self.meetup.yesRSVPCount stringValue];
     self.textviewDescription.text = self.meetup.eventDescription;
+    
 
 
     
