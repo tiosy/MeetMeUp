@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface MeetUp : NSObject
 
 @property NSString *eventName;
 @property NSString *address1;
 @property NSString *city;
 @property NSString *dateTimeString;
+@property NSString *eventURL;
+@property NSNumber *yesRSVPCount;
+@property NSString *groupName;
+@property NSString *eventDescription;
 
 @end

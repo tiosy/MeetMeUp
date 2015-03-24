@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		6E5E27011AC0B8A0000423A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27001AC0B8A0000423A8 /* main.m */; };
 		6E5E27041AC0B8A0000423A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27031AC0B8A0000423A8 /* AppDelegate.m */; };
-		6E5E27071AC0B8A0000423A8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27061AC0B8A0000423A8 /* ViewController.m */; };
+		6E5E27071AC0B8A0000423A8 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27061AC0B8A0000423A8 /* RootViewController.m */; };
 		6E5E270A1AC0B8A0000423A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E5E27081AC0B8A0000423A8 /* Main.storyboard */; };
 		6E5E270C1AC0B8A0000423A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E5E270B1AC0B8A0000423A8 /* Images.xcassets */; };
 		6E5E270F1AC0B8A0000423A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5E270D1AC0B8A0000423A8 /* LaunchScreen.xib */; };
 		6E5E271B1AC0B8A1000423A8 /* MeetMeUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E271A1AC0B8A1000423A8 /* MeetMeUpTests.m */; };
 		6E5E27261AC0BA4C000423A8 /* MeetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */; };
 		6E5E27291AC142A4000423A8 /* MeetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27281AC142A4000423A8 /* MeetUp.m */; };
+		6E5E272C1AC14EE2000423A8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E272B1AC14EE2000423A8 /* DetailViewController.m */; };
+		6EE021401AC16A7A0041445C /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE0213F1AC16A7A0041445C /* webViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,8 +36,8 @@
 		6E5E27001AC0B8A0000423A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6E5E27021AC0B8A0000423A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6E5E27031AC0B8A0000423A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6E5E27051AC0B8A0000423A8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6E5E27061AC0B8A0000423A8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6E5E27051AC0B8A0000423A8 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		6E5E27061AC0B8A0000423A8 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		6E5E27091AC0B8A0000423A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6E5E270B1AC0B8A0000423A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6E5E270E1AC0B8A0000423A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -46,6 +48,10 @@
 		6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetUpTableViewCell.m; sourceTree = "<group>"; };
 		6E5E27271AC142A4000423A8 /* MeetUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetUp.h; sourceTree = "<group>"; };
 		6E5E27281AC142A4000423A8 /* MeetUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetUp.m; sourceTree = "<group>"; };
+		6E5E272A1AC14EE2000423A8 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		6E5E272B1AC14EE2000423A8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		6EE0213E1AC16A7A0041445C /* webViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webViewController.h; sourceTree = "<group>"; };
+		6EE0213F1AC16A7A0041445C /* webViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,11 +95,15 @@
 			children = (
 				6E5E27021AC0B8A0000423A8 /* AppDelegate.h */,
 				6E5E27031AC0B8A0000423A8 /* AppDelegate.m */,
-				6E5E27051AC0B8A0000423A8 /* ViewController.h */,
-				6E5E27061AC0B8A0000423A8 /* ViewController.m */,
+				6E5E27051AC0B8A0000423A8 /* RootViewController.h */,
+				6E5E27061AC0B8A0000423A8 /* RootViewController.m */,
+				6E5E272A1AC14EE2000423A8 /* DetailViewController.h */,
+				6E5E272B1AC14EE2000423A8 /* DetailViewController.m */,
 				6E5E27271AC142A4000423A8 /* MeetUp.h */,
 				6E5E27281AC142A4000423A8 /* MeetUp.m */,
 				6E5E27081AC0B8A0000423A8 /* Main.storyboard */,
+				6EE0213E1AC16A7A0041445C /* webViewController.h */,
+				6EE0213F1AC16A7A0041445C /* webViewController.m */,
 				6E5E27241AC0BA4C000423A8 /* MeetUpTableViewCell.h */,
 				6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */,
 				6E5E270B1AC0B8A0000423A8 /* Images.xcassets */,
@@ -229,11 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E5E27071AC0B8A0000423A8 /* ViewController.m in Sources */,
+				6E5E27071AC0B8A0000423A8 /* RootViewController.m in Sources */,
+				6EE021401AC16A7A0041445C /* webViewController.m in Sources */,
 				6E5E27041AC0B8A0000423A8 /* AppDelegate.m in Sources */,
 				6E5E27291AC142A4000423A8 /* MeetUp.m in Sources */,
 				6E5E27011AC0B8A0000423A8 /* main.m in Sources */,
 				6E5E27261AC0BA4C000423A8 /* MeetUpTableViewCell.m in Sources */,
+				6E5E272C1AC14EE2000423A8 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +438,7 @@
 				6E5E27201AC0B8A1000423A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E5E27211AC0B8A1000423A8 /* Build configuration list for PBXNativeTarget "MeetMeUpTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +447,7 @@
 				6E5E27231AC0B8A1000423A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
