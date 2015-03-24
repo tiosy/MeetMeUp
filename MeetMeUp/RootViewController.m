@@ -21,6 +21,7 @@
 @property  MeetUp *meetup;
 
 
+
 @end
 
 @implementation RootViewController
@@ -54,10 +55,10 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 
- //??????
-//         [self.meetupDictionary removeAllObjects];
-//         [self.meetupArray removeAllObjects];
-//
+// ??????
+         self.meetupDictionary=nil;
+         self.meetupArray=nil;
+
 
          self.meetupDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
 
@@ -95,6 +96,8 @@
 
     cell.labelDateTime.text = [self.meetup.dateTime stringValue];
 
+    cell.imageView.image = self.meetup.image;
+
     // set alternate background color based on row number (odd or even)
     if(indexPath.row % 2 == 0){
         cell.contentView.backgroundColor = [UIColor colorWithRed:255/255.0f green:247/255.0f blue:225/255.0f alpha:1.0f];
@@ -123,9 +126,17 @@
     m.groupName = [[dic objectForKey:@"group"] objectForKey:@"name"];
     m.eventDescription = [dic objectForKey:@"description"];
 
+    NSString *group_id = [[[dic objectForKey:@"group"] objectForKey:@"id"] stringValue];
+
+    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/groups?key=1ce664f564d97152966486a2c2756&group_id=%@",group_id];
+
+    m.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]];
+
+
+
     return m;
 
-                   
+
 }
 
 

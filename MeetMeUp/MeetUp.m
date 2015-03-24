@@ -10,4 +10,34 @@
 
 @implementation MeetUp
 
+-(instancetype)initWithDictionary:(NSDictionary *)dictionary
+{
+    self =[super init];
+    //
+    //
+    return self;
+}
+
+
++(NSArray *) eventArrayFromDictionary:(NSArray *)dictArray
+{
+    NSMutableArray *muteArray = [NSMutableArray new];
+
+    for (NSDictionary *dict in dictArray) {
+        MeetUp *meetup = [[MeetUp alloc] initWithDictionary:dict];
+        [muteArray addObject:meetup];
+
+    }
+
+    return muteArray;
+}
+
+
++(void) pullEventsFromMeetupAPI
+{
+    
+}
+
+
+
 @end
