@@ -58,6 +58,7 @@
 //         [self.meetupDictionary removeAllObjects];
 //         [self.meetupArray removeAllObjects];
 //
+
          self.meetupDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
 
          self.meetupArray = [self.meetupDictionary objectForKey:@"results"];
