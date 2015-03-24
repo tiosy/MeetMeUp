@@ -15,6 +15,7 @@
 		6E5E270F1AC0B8A0000423A8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5E270D1AC0B8A0000423A8 /* LaunchScreen.xib */; };
 		6E5E271B1AC0B8A1000423A8 /* MeetMeUpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E271A1AC0B8A1000423A8 /* MeetMeUpTests.m */; };
 		6E5E27261AC0BA4C000423A8 /* MeetUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */; };
+		6E5E27291AC142A4000423A8 /* MeetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27281AC142A4000423A8 /* MeetUp.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		6E5E271A1AC0B8A1000423A8 /* MeetMeUpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeetMeUpTests.m; sourceTree = "<group>"; };
 		6E5E27241AC0BA4C000423A8 /* MeetUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetUpTableViewCell.h; sourceTree = "<group>"; };
 		6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetUpTableViewCell.m; sourceTree = "<group>"; };
+		6E5E27271AC142A4000423A8 /* MeetUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetUp.h; sourceTree = "<group>"; };
+		6E5E27281AC142A4000423A8 /* MeetUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetUp.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				6E5E27031AC0B8A0000423A8 /* AppDelegate.m */,
 				6E5E27051AC0B8A0000423A8 /* ViewController.h */,
 				6E5E27061AC0B8A0000423A8 /* ViewController.m */,
+				6E5E27271AC142A4000423A8 /* MeetUp.h */,
+				6E5E27281AC142A4000423A8 /* MeetUp.m */,
 				6E5E27081AC0B8A0000423A8 /* Main.storyboard */,
 				6E5E27241AC0BA4C000423A8 /* MeetUpTableViewCell.h */,
 				6E5E27251AC0BA4C000423A8 /* MeetUpTableViewCell.m */,
@@ -226,6 +231,7 @@
 			files = (
 				6E5E27071AC0B8A0000423A8 /* ViewController.m in Sources */,
 				6E5E27041AC0B8A0000423A8 /* AppDelegate.m in Sources */,
+				6E5E27291AC142A4000423A8 /* MeetUp.m in Sources */,
 				6E5E27011AC0B8A0000423A8 /* main.m in Sources */,
 				6E5E27261AC0BA4C000423A8 /* MeetUpTableViewCell.m in Sources */,
 			);
