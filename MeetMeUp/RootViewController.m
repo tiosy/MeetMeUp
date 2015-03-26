@@ -16,9 +16,12 @@
 @property NSMutableArray *meetupArray;
 @property NSMutableDictionary *meetupDictionary;
 
+@property NSMutableDictionary *groupsDictionary;
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @property  MeetUp *meetup;
+
 
 
 
@@ -29,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
+self.groupsDictionary =[NSMutableDictionary new];
     UILabel *magnifyingGlass = [[UILabel alloc] init];
     [magnifyingGlass setText:[[NSString alloc] initWithUTF8String:"\xF0\x9F\x94\x8D"]];
     [magnifyingGlass sizeToFit];
@@ -39,6 +42,8 @@
 
     NSString *string = @"mobile";
     [self performMeetupAPI:string];
+
+
 
 
 }
@@ -52,10 +57,13 @@
 
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
+
+
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
      ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 
-// ??????
+//
          self.meetupDictionary=nil;
          self.meetupArray=nil;
 
@@ -64,11 +72,86 @@
 
          self.meetupArray = [self.meetupDictionary objectForKey:@"results"];
 
-         [self.tableview reloadData];
+
+         //get a list of group ids
+         //construc a new URL
+         //call GROUP API
+         //create a NSMutableDictionary to store dictionary for each group
+
+         NSMutableString *groupsString = [NSMutableString new];
+
+         for(NSArray *element in self.meetupArray){
+
+             //concat the group string
+             NSNumber *ngrp = [[(NSDictionary *) element objectForKey:@"group"] objectForKey:@"id"];
+             groupsString = (NSMutableString *)[groupsString stringByAppendingFormat:@"%d,",[ngrp intValue]];
+
+             NSLog(@"before======%@====",groupsString);
+         }
+
+         groupsString = (NSMutableString *) [groupsString substringToIndex:groupsString.length-1];
+         NSLog(@"after======%@====",groupsString);
+
+         [self pullGroupPhotos:groupsString];
+
+
+
+
+
+
+
+         //[self.tableview reloadData];
      }
     ];
 
 }
+
+
+-(void) pullGroupPhotos:(NSMutableString *) groupsCommaSeperatedString
+{
+    //pull GROUPS with groupsString (comma seperated)
+    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/groups?key=1ce664f564d97152966486a2c2756&group_id=%@",groupsCommaSeperatedString];
+
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
+     ^(NSURLResponse *response, NSData *data, NSError *connectionError)
+    {
+
+         //
+         NSDictionary *myGroupsDictionary = [NSDictionary new];
+         NSMutableArray *myGroups = [NSMutableArray new];
+
+         myGroupsDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+
+         myGroups = [myGroupsDictionary objectForKey:@"results"];
+       //  NSLog(@"GROUPS %ld", myGroups.count);
+
+
+        for(NSArray *element in myGroups)
+        {
+            NSString *groupID = [[(NSDictionary *) element objectForKey:@"id"] stringValue];
+            NSString *groupPhotoURL = [[(NSDictionary *) element objectForKey:@"group_photo"] objectForKey:@"photo_link"];
+
+         //   NSLog(@"groupPhotoURL ----%@",groupPhotoURL);
+            [self.groupsDictionary  setValue:groupPhotoURL forKey:groupID];
+         }
+
+        for (NSString *key in self.groupsDictionary) {
+          NSLog(@">>>>>>>>%@",[self.groupsDictionary  objectForKey:key]);
+        }
+
+
+          [self.tableview reloadData];
+
+     }
+     ];
+
+
+}
+
+
+
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -84,19 +167,27 @@
 
     self.meetup = [self meetupGetData:dictionary];
 
-    //cell.textLabel.text = [dictionary objectForKey:@"name"];
-    //cell.detailTextLabel.text = [dictionary objectForKey:@"description"];
-    //cell.detailTextLabel.numberOfLines =0; //wrapping line
-    //NSURL *url = [NSURL URLWithString:[dictionary objectForKey:@"avatar_url"]];
-    //cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
 
     cell.labelEventName.text = self.meetup.eventName;
     cell.labelAddress1.text = self.meetup.address1;
     cell.labelCity.text = self.meetup.city;
 
-    cell.labelDateTime.text = [self.meetup.dateTime stringValue];
 
-    cell.imageView.image = self.meetup.image;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.meetup.dateTime intValue]];
+    cell.labelDateTime.text = [NSString stringWithFormat:@"%@",date];
+
+    NSString *groupPhotoURLString = [self.groupsDictionary objectForKey: self.meetup.groupID];
+
+    NSLog(@"***photoURL---%@----%@", groupPhotoURLString,self.meetup.groupID);
+
+            for (NSString *key in self.groupsDictionary) {
+               NSLog(@"!!!>>>>>>>>%@",[self.groupsDictionary  objectForKey:key]);
+            }
+
+    cell.imageviewCustom.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: groupPhotoURLString]]];
+
+
+
 
     // set alternate background color based on row number (odd or even)
     if(indexPath.row % 2 == 0){
@@ -124,13 +215,15 @@
     m.eventURL = [dic objectForKey:@"event_url"];
     m.yesRSVPCount = [dic objectForKey:@"yes_rsvp_count"];
     m.groupName = [[dic objectForKey:@"group"] objectForKey:@"name"];
+    m.groupID = [[dic objectForKey:@"group"] objectForKey:@"id"];
+
     m.eventDescription = [dic objectForKey:@"description"];
 
-    NSString *group_id = [[[dic objectForKey:@"group"] objectForKey:@"id"] stringValue];
-
-    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/groups?key=1ce664f564d97152966486a2c2756&group_id=%@",group_id];
-
-    m.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]];
+//    NSString *group_id = [[[dic objectForKey:@"group"] objectForKey:@"id"] stringValue];
+//
+//    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/groups?key=1ce664f564d97152966486a2c2756&group_id=%@",group_id];
+//
+////    m.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]];
 
 
 

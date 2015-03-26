@@ -29,6 +29,7 @@
 @property NSString *groupName;
 @property NSString *eventDescription;
 @property UIImage *image;
+@property NSString  *groupID;
 
 
 

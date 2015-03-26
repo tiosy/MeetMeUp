@@ -18,6 +18,7 @@
 		6E5E27291AC142A4000423A8 /* MeetUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E27281AC142A4000423A8 /* MeetUp.m */; };
 		6E5E272C1AC14EE2000423A8 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5E272B1AC14EE2000423A8 /* DetailViewController.m */; };
 		6EE021401AC16A7A0041445C /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE0213F1AC16A7A0041445C /* webViewController.m */; };
+		6EE0604D1AC3716700B4747B /* mobilemakers.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EE0604C1AC3716700B4747B /* mobilemakers.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		6E5E272B1AC14EE2000423A8 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		6EE0213E1AC16A7A0041445C /* webViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webViewController.h; sourceTree = "<group>"; };
 		6EE0213F1AC16A7A0041445C /* webViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webViewController.m; sourceTree = "<group>"; };
+		6EE0604C1AC3716700B4747B /* mobilemakers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobilemakers.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		6E5E26FE1AC0B8A0000423A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6EE0604C1AC3716700B4747B /* mobilemakers.png */,
 				6E5E26FF1AC0B8A0000423A8 /* Info.plist */,
 				6E5E27001AC0B8A0000423A8 /* main.m */,
 			);
@@ -221,6 +224,7 @@
 			files = (
 				6E5E270A1AC0B8A0000423A8 /* Main.storyboard in Resources */,
 				6E5E270F1AC0B8A0000423A8 /* LaunchScreen.xib in Resources */,
+				6EE0604D1AC3716700B4747B /* mobilemakers.png in Resources */,
 				6E5E270C1AC0B8A0000423A8 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

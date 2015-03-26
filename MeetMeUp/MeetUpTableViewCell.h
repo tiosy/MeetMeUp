@@ -17,7 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *labelDateTime;
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageview;
+@property (weak, nonatomic) IBOutlet UIImageView *imageviewCustom;
 
 
 @end
