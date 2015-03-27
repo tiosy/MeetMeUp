@@ -141,7 +141,7 @@ self.groupsDictionary =[NSMutableDictionary new];
           NSLog(@">>>>>>>>%@",[self.groupsDictionary  objectForKey:key]);
         }
 
-
+//due to async process
           [self.tableview reloadData];
 
      }
@@ -167,10 +167,16 @@ self.groupsDictionary =[NSMutableDictionary new];
 
     self.meetup = [self meetupGetData:dictionary];
 
+// turn off custom labels for now, no image
+//
+//    cell.labelEventName.text = self.meetup.eventName;
+//    cell.labelAddress1.text = self.meetup.address1;
+//    cell.labelCity.text = self.meetup.city;
+//
 
-    cell.labelEventName.text = self.meetup.eventName;
-    cell.labelAddress1.text = self.meetup.address1;
-    cell.labelCity.text = self.meetup.city;
+    cell.textLabel.text = self.meetup.eventName;
+    cell.detailTextLabel.text = self.meetup.address1;
+    cell.imageView.image = [UIImage imageNamed:@"meetup"];
 
 
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.meetup.dateTime intValue]];
@@ -178,7 +184,7 @@ self.groupsDictionary =[NSMutableDictionary new];
 
     NSString *groupPhotoURLString = [self.groupsDictionary objectForKey: self.meetup.groupID];
 
-    NSLog(@"***photoURL---%@----%@", groupPhotoURLString,self.meetup.groupID);
+    NSLog(@"***photoURL---%@----%@-----%ld", groupPhotoURLString,self.meetup.groupID,self.groupsDictionary.count );
 
             for (NSString *key in self.groupsDictionary) {
                NSLog(@"!!!>>>>>>>>%@",[self.groupsDictionary  objectForKey:key]);
