@@ -40,11 +40,11 @@
                                     <segue destination="3eM-kK-Qqk" kind="show" identifier="detail" id="Mwq-tb-79R"/>
                                 </connections>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EQl-vr-e6n">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EQl-vr-e6n">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="Fik-uE-Dv8" detailTextLabel="zBp-B9-bka" imageView="bMZ-B6-pY4" rowHeight="95" style="IBUITableViewCellStyleSubtitle" id="A7u-UA-DaH" customClass="MeetUpTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="Fik-uE-Dv8" detailTextLabel="zBp-B9-bka" imageView="bMZ-B6-pY4" rowHeight="61" style="IBUITableViewCellStyleSubtitle" id="A7u-UA-DaH" customClass="MeetUpTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A7u-UA-DaH" id="uIb-Yx-2xT">
@@ -103,10 +103,10 @@
                                 <exclude reference="2hP-68-Sbl"/>
                                 <exclude reference="u7Q-OA-sxL"/>
                                 <exclude reference="yUs-EM-4rJ"/>
+                                <exclude reference="9IH-8J-rV8"/>
                                 <exclude reference="XIe-Fm-Wh2"/>
                                 <exclude reference="rGF-R2-OgI"/>
                                 <exclude reference="shS-ol-lvi"/>
-                                <exclude reference="9IH-8J-rV8"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -118,10 +118,10 @@
                                 <include reference="2hP-68-Sbl"/>
                                 <include reference="u7Q-OA-sxL"/>
                                 <include reference="yUs-EM-4rJ"/>
+                                <include reference="9IH-8J-rV8"/>
                                 <include reference="XIe-Fm-Wh2"/>
                                 <include reference="rGF-R2-OgI"/>
                                 <include reference="shS-ol-lvi"/>
-                                <include reference="9IH-8J-rV8"/>
                             </mask>
                         </variation>
                     </view>

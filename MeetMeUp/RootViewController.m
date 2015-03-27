@@ -40,7 +40,7 @@ self.groupsDictionary =[NSMutableDictionary new];
     [self.textField setLeftView:magnifyingGlass];
     [self.textField setLeftViewMode:UITextFieldViewModeAlways];
 
-    NSString *string = @"mobile";
+    NSString *string = @"yoga";
     [self performMeetupAPI:string];
 
 
