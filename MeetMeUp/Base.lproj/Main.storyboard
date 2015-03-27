@@ -37,7 +37,6 @@
                                 </variation>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="tgW-TY-yVo"/>
-                                    <segue destination="3eM-kK-Qqk" kind="show" identifier="detail" id="Mwq-tb-79R"/>
                                 </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EQl-vr-e6n">
@@ -607,7 +606,4 @@
     <resources>
         <image name="meetup" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Mwq-tb-79R"/>
-    </inferredMetricsTieBreakers>
 </document>
