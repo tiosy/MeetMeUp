@@ -19,14 +19,24 @@
         self.eventName = [dictionary objectForKey:@"name"];
         self.address1  = [[dictionary objectForKey:@"venue"] objectForKey:@"address_1"];
         self.city = [[dictionary objectForKey:@"venue"] objectForKey:@"city"];
-        self.dateTime = [dictionary objectForKey:@"time"];
         self.eventURL = [dictionary objectForKey:@"event_url"];
         self.yesRSVPCount = [dictionary objectForKey:@"yes_rsvp_count"];
         self.groupName = [[dictionary objectForKey:@"group"] objectForKey:@"name"];
         self.groupID = [[dictionary objectForKey:@"group"] objectForKey:@"id"];
         self.eventDescription = [dictionary objectForKey:@"description"];
+        self.timeSince1970 = [dictionary objectForKey:@"time"];
     }
     return self;
+}
+
+
+-(NSString *)time
+{
+    NSDateFormatter *formatter=[NSDateFormatter new];
+    formatter.dateFormat = @"MM/dd/yy hh:MM";
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.timeSince1970.doubleValue/1000.0f];
+
+    return [formatter stringFromDate:date];
 }
 
 +(void)retrieveMeetupWithCompletion:(NSString *)searchText block:(void (^)(NSMutableArray *))complete

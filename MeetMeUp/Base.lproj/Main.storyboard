@@ -18,18 +18,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="51" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EQl-vr-e6n">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="EQl-vr-e6n">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="51" id="A7u-UA-DaH" customClass="MeetUpTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="3cW-p9-7Cs" detailTextLabel="qFv-0Y-Ych" rowHeight="53" style="IBUITableViewCellStyleSubtitle" id="k3t-wt-RUQ">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A7u-UA-DaH" id="uIb-Yx-2xT">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k3t-wt-RUQ" id="AH8-hg-aok">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3cW-p9-7Cs">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qFv-0Y-Ych">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="3eM-kK-Qqk" kind="show" id="nuo-Fe-fWu"/>
+                                            <segue destination="3eM-kK-Qqk" kind="show" id="WBb-a8-ioT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -41,6 +60,9 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="fbA-41-ZmY">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="118" width="400" height="44"/>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="whX-hY-AKG"/>
                                 </connections>
@@ -48,18 +70,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="EQl-vr-e6n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="35o-7C-E1b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EQl-vr-e6n" secondAttribute="trailing" constant="-16" id="K7P-jS-cXM"/>
                             <constraint firstItem="fbA-41-ZmY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LBx-mw-YC0"/>
                             <constraint firstItem="fbA-41-ZmY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="VLM-FV-tHG"/>
-                            <constraint firstItem="EQl-vr-e6n" firstAttribute="top" secondItem="fbA-41-ZmY" secondAttribute="bottom" id="VZf-cF-PUk">
-                                <variation key="widthClass=compact" constant="11"/>
-                            </constraint>
-                            <constraint firstAttribute="trailingMargin" secondItem="EQl-vr-e6n" secondAttribute="trailing" constant="-16" id="aCh-4U-ACl"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EQl-vr-e6n" secondAttribute="bottom" id="bBZ-4i-2JM"/>
+                            <constraint firstItem="EQl-vr-e6n" firstAttribute="top" secondItem="fbA-41-ZmY" secondAttribute="bottom" id="Zgk-p7-w4V"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fbA-41-ZmY" secondAttribute="trailing" constant="-16" id="fIP-vx-ePA"/>
-                            <constraint firstItem="EQl-vr-e6n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="j6U-bk-hgV"/>
                             <constraint firstItem="fbA-41-ZmY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="tsg-5k-5Zt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fbA-41-ZmY" secondAttribute="trailing" constant="-16" id="yaX-JE-x64"/>
                             <constraint firstItem="fbA-41-ZmY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yaa-hn-YwC"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EQl-vr-e6n" secondAttribute="bottom" id="zsc-i0-4A9"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -67,16 +87,16 @@
                                 <exclude reference="fbA-41-ZmY"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="zsc-i0-4A9"/>
                                 <exclude reference="LBx-mw-YC0"/>
                                 <exclude reference="VLM-FV-tHG"/>
                                 <exclude reference="fIP-vx-ePA"/>
                                 <exclude reference="tsg-5k-5Zt"/>
                                 <exclude reference="yaX-JE-x64"/>
                                 <exclude reference="yaa-hn-YwC"/>
-                                <exclude reference="VZf-cF-PUk"/>
-                                <exclude reference="aCh-4U-ACl"/>
-                                <exclude reference="j6U-bk-hgV"/>
-                                <exclude reference="bBZ-4i-2JM"/>
+                                <exclude reference="35o-7C-E1b"/>
+                                <exclude reference="K7P-jS-cXM"/>
+                                <exclude reference="Zgk-p7-w4V"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -85,21 +105,22 @@
                                 <include reference="fbA-41-ZmY"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="zsc-i0-4A9"/>
                                 <include reference="LBx-mw-YC0"/>
                                 <include reference="VLM-FV-tHG"/>
                                 <include reference="fIP-vx-ePA"/>
                                 <include reference="tsg-5k-5Zt"/>
                                 <include reference="yaX-JE-x64"/>
                                 <include reference="yaa-hn-YwC"/>
-                                <include reference="VZf-cF-PUk"/>
-                                <include reference="aCh-4U-ACl"/>
-                                <include reference="j6U-bk-hgV"/>
-                                <include reference="bBZ-4i-2JM"/>
+                                <include reference="35o-7C-E1b"/>
+                                <include reference="K7P-jS-cXM"/>
+                                <include reference="Zgk-p7-w4V"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="MeetMeUp" id="qXS-mk-a6e"/>
                     <connections>
+                        <outlet property="searchbar" destination="fbA-41-ZmY" id="CaR-RS-Thj"/>
                         <outlet property="tableview" destination="EQl-vr-e6n" id="uhU-Ow-bLu"/>
                     </connections>
                 </viewController>

@@ -15,7 +15,8 @@
 
 @property (nonatomic) NSMutableArray *meetupArray;
 
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchbar;
+
 
 
 @end
@@ -27,24 +28,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.meetupArray = [NSMutableArray new];
     //each meetupArray element is a Meetup object
+    //block is async
     NSString *searchText = @"";
     [MeetUp retrieveMeetupWithCompletion:searchText block:^(NSMutableArray *meetupArray) {
-        self.meetupArray = meetupArray;
-    }];
 
+        self.meetupArray = meetupArray;
+
+        //testing
+        for (MeetUp *m in self.meetupArray) {NSLog(@"%@",m.eventName);}
+
+    }];
 }
 
-
--(void) setMeetup:(NSMutableArray *)meetupArray
+//MeetuArray setter
+-(void) setMeetupArray:(NSMutableArray *)meetupArray
 {
     _meetupArray = meetupArray;
     [self.tableview reloadData];
 }
-
-
-
-
 
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
@@ -61,9 +64,16 @@
 
     cell.imageView.image = [UIImage imageNamed:@"meetup"];
     cell.textLabel.text = meetup.eventName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",meetup.time,meetup.address1];
 
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[meetup.dateTime intValue]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",date,meetup.address1];
+
+
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[meetup.dateTime intValue]/1000.0f];
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",date,meetup.address1];
+
+    
+    //reload cell
+    [cell layoutSubviews];
 
     // set alternate background color based on row number (odd or even)
     if(indexPath.row % 2 == 0){
@@ -78,8 +88,6 @@
 }
 
 
-
-
 #pragma mark - Segue to DetailVC
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -89,30 +97,13 @@
     MeetUp *meetup = [self.meetupArray objectAtIndex:indexPath.row];
 
     detailVC.meetup = meetup;
-    
-}
-
-
-
-#pragma mark UITextFieldDelegate Protocols
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    NSString *searchText = self.textField.text;
-
-    //each meetupArray element is a Meetup object
-    [MeetUp retrieveMeetupWithCompletion:searchText block:^(NSMutableArray *meetupArray) {
-        self.meetupArray = meetupArray;
-    }];
-
-    [textField resignFirstResponder];
-    return YES;
 }
 
 
 #pragma mark - UISearchBarDelegate Protocols
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-
+    NSLog(@"searchbar clicked");
     NSString *searchText = searchBar.text;
 
     //each meetupArray element is a Meetup object
@@ -121,7 +112,19 @@
     }];
 
     [searchBar resignFirstResponder];
-
 }
+
+//-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+//{
+//    NSString *searchText = searchBar.text;
+//
+//    //each meetupArray element is a Meetup object
+//    [MeetUp retrieveMeetupWithCompletion:searchText block:^(NSMutableArray *meetupArray) {
+//        self.meetupArray = meetupArray;
+//    }];
+//
+//    [searchBar resignFirstResponder];
+//
+//}
 
 @end

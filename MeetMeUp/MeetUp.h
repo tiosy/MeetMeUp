@@ -22,7 +22,10 @@
 @property NSString *eventName;
 @property NSString *address1;
 @property NSString *city;
-@property NSNumber *dateTime;
+
+@property (nonatomic) NSString *time;
+@property NSNumber *timeSince1970;
+
 @property NSString *eventURL;
 @property NSNumber *yesRSVPCount;
 @property NSString *groupName;
