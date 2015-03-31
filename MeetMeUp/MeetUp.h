@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
 @protocol MeetupDelegate <NSObject>
 
 -(void) meetup:(NSArray *) meetupArray;
@@ -28,15 +27,11 @@
 @property NSNumber *yesRSVPCount;
 @property NSString *groupName;
 @property NSString *eventDescription;
-@property UIImage *image;
-@property NSString  *groupID;
+@property UIImage  *image;  //change to URL later
+@property NSString *groupID;
 
-
-
-//not use yet...use in the future
 -(instancetype)initWithDictionary: (NSDictionary *)dictionary;
-+(NSArray *)eventArrayFromDictionary:(NSArray *) dictArray;
-
-+(void) pullEventsFromMeetupAPI;
++(void)retrieveMeetupWithCompletion:(NSString *)searchText block:(void (^)(NSMutableArray *))complete;
+-(void)getImageWithCompletion:(void (^)(NSData *))complete;
 
 @end

@@ -10,145 +10,39 @@
 #import "DetailViewController.h"
 #import "MeetUpTableViewCell.h"
 
-@interface RootViewController () <UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
+@interface RootViewController () <UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
-@property NSMutableArray *meetupArray;
-@property NSMutableDictionary *meetupDictionary;
-
-@property NSMutableDictionary *groupsDictionary;
+@property (nonatomic) NSMutableArray *meetupArray;
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
-@property  MeetUp *meetup;
-
-
-
 
 @end
+
+
 
 @implementation RootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-self.groupsDictionary =[NSMutableDictionary new];
-    UILabel *magnifyingGlass = [[UILabel alloc] init];
-    [magnifyingGlass setText:[[NSString alloc] initWithUTF8String:"\xF0\x9F\x94\x8D"]];
-    [magnifyingGlass sizeToFit];
 
-    [self.textField setLeftView:magnifyingGlass];
-    [self.textField setLeftViewMode:UITextFieldViewModeAlways];
-
-    NSString *string = @"yoga";
-    [self performMeetupAPI:string];
-
-
-
+    //each meetupArray element is a Meetup object
+    NSString *searchText = @"";
+    [MeetUp retrieveMeetupWithCompletion:searchText block:^(NSMutableArray *meetupArray) {
+        self.meetupArray = meetupArray;
+    }];
 
 }
 
 
-#pragma mark - helper method
-
--(void) performMeetupAPI: (NSString *) text
+-(void) setMeetup:(NSMutableArray *)meetupArray
 {
-    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/open_events.json?zip=95110&&text_format=plain&time=,1w&key=1ce664f564d97152966486a2c2756&text=%@",text];
-
-    NSURL *url = [NSURL URLWithString:string];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-
-
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
-     ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-
-//
-         self.meetupDictionary=nil;
-         self.meetupArray=nil;
-
-
-         self.meetupDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-
-         self.meetupArray = [self.meetupDictionary objectForKey:@"results"];
-
-
-         //get a list of group ids
-         //construc a new URL
-         //call GROUP API
-         //create a NSMutableDictionary to store dictionary for each group
-
-         NSMutableString *groupsString = [NSMutableString new];
-
-         for(NSArray *element in self.meetupArray){
-
-             //concat the group string
-             NSNumber *ngrp = [[(NSDictionary *) element objectForKey:@"group"] objectForKey:@"id"];
-             groupsString = (NSMutableString *)[groupsString stringByAppendingFormat:@"%d,",[ngrp intValue]];
-
-             NSLog(@"before======%@====",groupsString);
-         }
-
-         groupsString = (NSMutableString *) [groupsString substringToIndex:groupsString.length-1];
-         NSLog(@"after======%@====",groupsString);
-
-         [self pullGroupPhotos:groupsString];
-
-
-
-
-
-
-
-         //[self.tableview reloadData];
-     }
-    ];
-
+    _meetupArray = meetupArray;
+    [self.tableview reloadData];
 }
 
 
--(void) pullGroupPhotos:(NSMutableString *) groupsCommaSeperatedString
-{
-    //pull GROUPS with groupsString (comma seperated)
-    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/groups?key=1ce664f564d97152966486a2c2756&group_id=%@",groupsCommaSeperatedString];
-
-    NSURL *url = [NSURL URLWithString:string];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:
-     ^(NSURLResponse *response, NSData *data, NSError *connectionError)
-    {
-
-         //
-         NSDictionary *myGroupsDictionary = [NSDictionary new];
-         NSMutableArray *myGroups = [NSMutableArray new];
-
-         myGroupsDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-
-         myGroups = [myGroupsDictionary objectForKey:@"results"];
-       //  NSLog(@"GROUPS %ld", myGroups.count);
-
-
-        for(NSArray *element in myGroups)
-        {
-            NSString *groupID = [[(NSDictionary *) element objectForKey:@"id"] stringValue];
-            NSString *groupPhotoURL = [[(NSDictionary *) element objectForKey:@"group_photo"] objectForKey:@"photo_link"];
-
-         //   NSLog(@"groupPhotoURL ----%@",groupPhotoURL);
-            [self.groupsDictionary  setValue:groupPhotoURL forKey:groupID];
-         }
-
-        for (NSString *key in self.groupsDictionary) {
-          NSLog(@">>>>>>>>%@",[self.groupsDictionary  objectForKey:key]);
-        }
-
-//due to async process
-          [self.tableview reloadData];
-
-     }
-     ];
-
-
-}
 
 
 
@@ -163,37 +57,13 @@ self.groupsDictionary =[NSMutableDictionary new];
 {
     MeetUpTableViewCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
-    NSDictionary *dictionary = [self.meetupArray objectAtIndex:indexPath.row];
+    MeetUp *meetup = [self.meetupArray objectAtIndex:indexPath.row];
 
-    self.meetup = [self meetupGetData:dictionary];
-
-// turn off custom labels for now, no image
-//
-//    cell.labelEventName.text = self.meetup.eventName;
-//    cell.labelAddress1.text = self.meetup.address1;
-//    cell.labelCity.text = self.meetup.city;
-//
-
-    cell.textLabel.text = self.meetup.eventName;
-    cell.detailTextLabel.text = self.meetup.address1;
     cell.imageView.image = [UIImage imageNamed:@"meetup"];
+    cell.textLabel.text = meetup.eventName;
 
-
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[self.meetup.dateTime intValue]];
-    cell.labelDateTime.text = [NSString stringWithFormat:@"%@",date];
-
-    NSString *groupPhotoURLString = [self.groupsDictionary objectForKey: self.meetup.groupID];
-
-    NSLog(@"***photoURL---%@----%@-----%ld", groupPhotoURLString,self.meetup.groupID,self.groupsDictionary.count );
-
-            for (NSString *key in self.groupsDictionary) {
-               NSLog(@"!!!>>>>>>>>%@",[self.groupsDictionary  objectForKey:key]);
-            }
-
-    cell.imageviewCustom.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString: groupPhotoURLString]]];
-
-
-
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[meetup.dateTime intValue]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",date,meetup.address1];
 
     // set alternate background color based on row number (odd or even)
     if(indexPath.row % 2 == 0){
@@ -207,66 +77,51 @@ self.groupsDictionary =[NSMutableDictionary new];
     
 }
 
--(MeetUp *) meetupGetData: (NSDictionary *) dic
-{
-    MeetUp *m = [MeetUp new];
-
-    m.eventName = [dic objectForKey:@"name"];
-    m.address1  = [[dic objectForKey:@"venue"] objectForKey:@"address_1"];
-    m.city = [[dic objectForKey:@"venue"] objectForKey:@"city"];
-    m.dateTime = [dic objectForKey:@"time"];
 
 
 
-    m.eventURL = [dic objectForKey:@"event_url"];
-    m.yesRSVPCount = [dic objectForKey:@"yes_rsvp_count"];
-    m.groupName = [[dic objectForKey:@"group"] objectForKey:@"name"];
-    m.groupID = [[dic objectForKey:@"group"] objectForKey:@"id"];
-
-    m.eventDescription = [dic objectForKey:@"description"];
-
-//    NSString *group_id = [[[dic objectForKey:@"group"] objectForKey:@"id"] stringValue];
-//
-//    NSString *string = [NSString stringWithFormat:@"https://api.meetup.com/2/groups?key=1ce664f564d97152966486a2c2756&group_id=%@",group_id];
-//
-////    m.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]];
-
-
-
-    return m;
-
-
-}
-
-
-
+#pragma mark - Segue to DetailVC
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-
     DetailViewController *detailVC = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableview indexPathForSelectedRow];
 
-    NSDictionary *dictionary = [self.meetupArray objectAtIndex:indexPath.row];
+    MeetUp *meetup = [self.meetupArray objectAtIndex:indexPath.row];
 
-    self.meetup = [self meetupGetData:dictionary];
-
-    detailVC.meetup = self.meetup;
+    detailVC.meetup = meetup;
     
 }
 
 
 
 #pragma mark UITextFieldDelegate Protocols
-
-//add http:// string if user does not provide
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    NSString *searchText = self.textField.text;
 
+    //each meetupArray element is a Meetup object
+    [MeetUp retrieveMeetupWithCompletion:searchText block:^(NSMutableArray *meetupArray) {
+        self.meetupArray = meetupArray;
+    }];
 
-    NSString *string = self.textField.text;
-    [self performMeetupAPI:string];
     [textField resignFirstResponder];
     return YES;
+}
+
+
+#pragma mark - UISearchBarDelegate Protocols
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+
+    NSString *searchText = searchBar.text;
+
+    //each meetupArray element is a Meetup object
+    [MeetUp retrieveMeetupWithCompletion:searchText block:^(NSMutableArray *meetupArray) {
+        self.meetupArray = meetupArray;
+    }];
+
+    [searchBar resignFirstResponder];
+
 }
 
 @end

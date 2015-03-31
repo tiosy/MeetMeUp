@@ -95,15 +95,15 @@
 		6E5E26FD1AC0B8A0000423A8 /* MeetMeUp */ = {
 			isa = PBXGroup;
 			children = (
+				6E5E27271AC142A4000423A8 /* MeetUp.h */,
+				6E5E27281AC142A4000423A8 /* MeetUp.m */,
 				6E5E27021AC0B8A0000423A8 /* AppDelegate.h */,
 				6E5E27031AC0B8A0000423A8 /* AppDelegate.m */,
+				6E5E27081AC0B8A0000423A8 /* Main.storyboard */,
 				6E5E27051AC0B8A0000423A8 /* RootViewController.h */,
 				6E5E27061AC0B8A0000423A8 /* RootViewController.m */,
 				6E5E272A1AC14EE2000423A8 /* DetailViewController.h */,
 				6E5E272B1AC14EE2000423A8 /* DetailViewController.m */,
-				6E5E27271AC142A4000423A8 /* MeetUp.h */,
-				6E5E27281AC142A4000423A8 /* MeetUp.m */,
-				6E5E27081AC0B8A0000423A8 /* Main.storyboard */,
 				6EE0213E1AC16A7A0041445C /* webViewController.h */,
 				6EE0213F1AC16A7A0041445C /* webViewController.m */,
 				6E5E27241AC0BA4C000423A8 /* MeetUpTableViewCell.h */,
